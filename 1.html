@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html >
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title></title>
+  <style type="text/css">
+    *{padding: 0;margin:0;}
+    ul,li{list-style: none}
+    .left{float: left;}
+    .right{float: right;}
+    .select_contain{font-size: 14px;color: #333;line-height: 38px;margin: 30px 0;}
+    .select_item{margin-right: 50px;position: relative;}
+    .select_tit{margin-right: 20px;}
+    .select_result{width: 100px;line-height: 38px;border:1px solid #ccc;text-align: center;border-radius: 4px;text-indent: -8px;cursor:pointer;}
+    .select_result .triangle{border:5px solid transparent;border-top:5px solid #666;position: absolute;top: 16px; right:8px;}
+    .select_item ul{display:none;position:absolute;top:100%;right:0;width:100px;background: #f3f3f3;border:1px solid #ccc;border-radius:0 0 4px 4px; border-top-color:#f3f3f3;margin-top:-4px;}
+    .select_item ul li{text-align: center;cursor: pointer;}
+    .select_item ul li:hover{background: #f4a100; color: #fff;}
+  </style>
+  <script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+  <script>
+  function select(){
+    $(document).click(function(){
+      $(".select_module_con ul").slideUp();
+    })
+    var module=$(".select_result"); 
+    module.click(function(e){
+      e.stopPropagation();
+      var ul=$(this).next();
+      ul.stop().slideToggle();
+      ul.children().click(function(e){
+        e.stopPropagation();
+        $(this).parent().prev().children("span").text($(this).text());
+        ul.stop().slideUp();
+      })
+    })
+  }
+  $(function(){
+    select(); 
+  })
+  </script>
+</head>
+<body>
+  <div class="select_contain">
+      <div class="select_item clearfix left">
+        <div class="select_tit left">选择学校</div>
+        <div class="select_module_con left">
+          <div class="select_result">
+            <span></span>
+            <div class="triangle"></div>
+          </div>
+          <ul>
+            <li>哈尔滨商业大学</li>
+            <li>哈尔滨工业大学</li>
+            <li>四川大学</li>
+          </ul>
+        </div>
+      </div>
+      <div class="select_item clearfix left">
+        <div class="select_tit left">选择专业</div>
+        <div class="select_module_con left">
+          <div class="select_result">
+            <span></span>
+            <div class="triangle"></div>
+          </div>
+          <ul>
+            <li>计算机科学与技术</li>
+            <li>信息管理与信息系统</li>
+            <li>软件工程</li>
+          </ul>
+        </div>
+      </div>
+   </div>
+</body>
+</html>
